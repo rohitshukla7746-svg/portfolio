@@ -1,6 +1,5 @@
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 
 export const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -31,15 +30,59 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className={cn(
-        "fixed max-sm:hidden top-5 right-5 z-50 p-2 rounded-full transition-colors duration-300",
-        "focus:outlin-hidden"
-      )}
+      className="fixed max-sm:hidden top-5 right-5 z-50 p-2.5 rounded-full transition-all duration-300"
+      style={
+        isDarkMode
+          ? {
+              // Dark mode — aurora green glow (night/aurora theme)
+              background: "rgba(0,255,150,0.08)",
+              border: "1px solid rgba(0,255,150,0.3)",
+              boxShadow: "0 0 16px rgba(0,255,150,0.2)",
+            }
+          : {
+              // Light mode — warm sun glow (day theme)
+              background: "rgba(255,200,50,0.12)",
+              border: "1px solid rgba(255,200,50,0.4)",
+              boxShadow: "0 0 16px rgba(255,200,50,0.25)",
+            }
+      }
+      onMouseEnter={(e) => {
+        if (isDarkMode) {
+          e.currentTarget.style.boxShadow = "0 0 28px rgba(0,255,150,0.4)";
+          e.currentTarget.style.background = "rgba(0,255,150,0.15)";
+        } else {
+          e.currentTarget.style.boxShadow = "0 0 28px rgba(255,200,50,0.5)";
+          e.currentTarget.style.background = "rgba(255,200,50,0.2)";
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (isDarkMode) {
+          e.currentTarget.style.boxShadow = "0 0 16px rgba(0,255,150,0.2)";
+          e.currentTarget.style.background = "rgba(0,255,150,0.08)";
+        } else {
+          e.currentTarget.style.boxShadow = "0 0 16px rgba(255,200,50,0.25)";
+          e.currentTarget.style.background = "rgba(255,200,50,0.12)";
+        }
+      }}
     >
       {isDarkMode ? (
-        <Sun className="h-6 w-6 text-yellow-300" />
+        // Night mode — show Sun to switch to day
+        <Sun
+          className="h-5 w-5 transition-transform duration-300 hover:rotate-45"
+          style={{
+            color: "#ffd700",
+            filter: "drop-shadow(0 0 6px rgba(255,215,0,0.8))",
+          }}
+        />
       ) : (
-        <Moon className="h-6 w-6 text-blue-900" />
+        // Day mode — show Moon to switch to night
+        <Moon
+          className="h-5 w-5 transition-transform duration-300"
+          style={{
+            color: "#00ffaa",
+            filter: "drop-shadow(0 0 6px rgba(0,255,150,0.8))",
+          }}
+        />
       )}
     </button>
   );
