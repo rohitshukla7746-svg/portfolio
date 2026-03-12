@@ -13,14 +13,16 @@ const projects = [
 },
 ,
   {
+  
   id: 2,
-  title: "Upcoming Project",
+  title: "Wconnect Chat App",
   description:
-    "A new full-stack project currently in development. This project will showcase modern web technologies and real-world application features.",
+    "A full-stack real-time chat application built with the PERN stack. It allows users to register, log in securely, and communicate instantly through real-time messaging. The application includes modern UI, RESTful APIs, and media upload support for a seamless chatting experience.",
   image: "/projects/project2.png",
-  tags: ["Coming Soon"],
-  demoUrl: "#",
-  githubUrl: "#",
+  tags: ["PERN Stack", "React", "Node.js", "PostgreSQL", "Socket.io"],
+  demoUrl: "https://wconnect-chatapp-frontend.onrender.com/",
+  githubUrl: "https://github.com/rohitshukla7746-svg/wconnect-chatapp",
+
 },
 {
   id: 3,
